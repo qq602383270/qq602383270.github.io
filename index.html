@@ -280,8 +280,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/08/01/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2016/08/02/java导入导出/" itemprop="url">
+                  java excel导入导出
                 </a>
               
             
@@ -294,19 +294,38 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-01T16:02:35+08:00" content="2016-08-01">
-              2016-08-01
+            <time itemprop="dateCreated" datetime="2016-08-02T00:47:54+08:00" content="2016-08-02">
+              2016-08-02
             </time>
           </span>
 
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/分类/" itemprop="url" rel="index">
+                    <span itemprop="name">分类</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/01/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/01/hello-world/" itemprop="commentsCount"></span>
+                <a href="/2016/08/02/java导入导出/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/02/java导入导出/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -331,16 +350,45 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <p>导入方法</p>
+<p>WritableWorkbook book = Workbook.createWorkbook(new File(“F:/test.xls”));<br>        // 生成名为“第一页”的工作表，参数0表示这是第一页<br>        WritableSheet sheet = book.createSheet(“第一页” , 0 );<br>        // 在Label对象的构造子中指名单元格位置是第一列第一行(0,0)<br>        // 以及单元格内容为test</p>
+<pre><code>    Label label =null;
+    // 写入数据并关闭文件
+    book.write();
+    book.close();
+    int i=0;
+    sheet.addCell(new Label( 0 , 0 , &quot;用户ID&quot; ));
+        // 将定义好的单元格添加到工作表中
+      label= new Label( 0 , i , userId );
+      sheet.addCell(label);
+         /**/ 
+        /*
+         * 生成一个保存数字的单元格 必须使用Number的完整包路径，否则有语法歧义 单元格位置是第二列，第一行，值为789.123
+        */
+         jxl.write.Number number = new jxl.write.Number( 1 , 0 , 555.12541 );
+            sheet.addCell(number);
 
+}
+</code></pre><p>读取方法</p>
+<pre><code>        try {
+            Workbook rwb=Workbook.getWorkbook(new File(&quot;F:/test.xls&quot;));
+            Sheet rs=rwb.getSheet(0);//或者rwb.getSheet(0)
+            int clos=rs.getColumns();//得到所有的列
+            int rows=rs.getRows();//得到所有的行
+
+            for (int i = 1; i &lt; rows; i++) {
+                for (int j = 0; j &lt; clos; j++) {
+                    //第一个是列数，第二个是行数
+                    String userid=rs.getCell(j++, i).getContents();//默认最左边编号也算一列 所以这里得j++
+                    String balance=rs.getCell(j++, i).getContents();
+                    String availableAmount=rs.getCell(j++, i).getContents();
+                    String freezeAmount=rs.getCell(j++, i).getContents();
+
+                    System.out.println(&quot;用户id:&quot;+userid+&quot;\t账户余额:&quot;+balance+&quot;\t可用余额:&quot;+availableAmount+&quot;\t冻结余额:&quot;+freezeAmount);
+                }
+            }
+}catch(Exception e){}
+</code></pre>
           
         
       
@@ -415,7 +463,21 @@
           </div>
 
           
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
 
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -484,6 +546,24 @@
         
 
         
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://example.com/" title="Title" target="_blank">Title</a>
+                </li>
+              
+            </ul>
+          </div>
         
 
       </section>
