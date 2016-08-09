@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-01T16:58:05.000Z</updated>
+  <updated>2016-08-09T03:33:29.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,16 +16,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>高并发static变量的缺陷</title>
+    <link href="http://yoursite.com/2016/08/09/%E9%AB%98%E5%B9%B6%E5%8F%91/"/>
+    <id>http://yoursite.com/2016/08/09/高并发/</id>
+    <published>2016-08-09T03:32:15.000Z</published>
+    <updated>2016-08-09T03:33:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>static表示“全局”或者“静态”的意思，用来修饰成员变量和成员方法，也可以形成静态static代码块。被static修饰的成员变量和成员方法独立于该类的任何对象。也就是说，它不依赖类特定的实例，被类的所有实例共享。也就是被static修饰的变量在内存中只有一份内存地址。<br>在高并发中被static修饰的变量很容易出现脏读的情况。<br>比如：<br>public static SimpleDateFormat df = new SimpleDateFormat(“yyyy-MM-dd HH:mm:ss”);<br>这样的代码在高并发的情况下会出现以下问题<br>当线程A从客户端访问服务器将数据还没返回到客户端的时候，线程B同时也将数据返回到客户端，如此一来由于static只有一块内存导致线程A的数据就会被线程B的数据所替换导致线程A拿到的数据是脏数据。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;static表示“全局”或者“静态”的意思，用来修饰成员变量和成员方法，也可以形成静态static代码块。被static修饰的成员变量和成员方法独立于该类的任何对象。也就是说，它不依赖类特定的实例，被类的所有实例共享。也就是被static修饰的变量在内存中只有一份内存地址。
+    
+    </summary>
+    
+      <category term="分类" scheme="http://yoursite.com/categories/%E5%88%86%E7%B1%BB/"/>
+    
+    
+      <category term="static" scheme="http://yoursite.com/tags/static/"/>
+    
+  </entry>
+  
+  <entry>
     <title>java excel导入导出</title>
     <link href="http://yoursite.com/2016/08/02/java%E5%AF%BC%E5%85%A5%E5%AF%BC%E5%87%BA/"/>
     <id>http://yoursite.com/2016/08/02/java导入导出/</id>
     <published>2016-08-01T16:47:54.000Z</published>
-    <updated>2016-08-01T16:58:05.000Z</updated>
+    <updated>2016-08-09T03:14:06.000Z</updated>
     
     <content type="html"><![CDATA[<p>导入方法</p>
-<p>WritableWorkbook book = Workbook.createWorkbook(new File(“F:/test.xls”));<br>        // 生成名为“第一页”的工作表，参数0表示这是第一页<br>        WritableSheet sheet = book.createSheet(“第一页” , 0 );<br>        // 在Label对象的构造子中指名单元格位置是第一列第一行(0,0)<br>        // 以及单元格内容为test</p>
-<pre><code>    Label label =null;
-    // 写入数据并关闭文件
+<pre><code>    WritableWorkbook book = Workbook.createWorkbook(new File(&quot;F:/test.xls&quot;));
+    // 生成名为“第一页”的工作表，参数0表示这是第一页
+    WritableSheet sheet = book.createSheet(&quot;第一页&quot; , 0 );
+    // 在Label对象的构造子中指名单元格位置是第一列第一行(0,0)
+    // 以及单元格内容为test
+
+    Label label =null;
+    // 写入数据并关闭文件 
     book.write();
     book.close();
     int i=0;
@@ -65,7 +93,8 @@
     <summary type="html">
     
       &lt;p&gt;导入方法&lt;/p&gt;
-&lt;p&gt;WritableWorkbook book = Workbook.createWorkbook(new File(“F:/test.xls”));&lt;br&gt;        // 生成名为“第一页”的工作表，参数0表示这是第一页&lt;br&gt;        W
+&lt;pre&gt;&lt;code&gt;    WritableWorkbook book = Workbook.createWorkbook(new File(&amp;quot;F:/test.xls&amp;quot;));
+    // 生成名为“第一页”的工作表，参数0表示这是第
     
     </summary>
     
