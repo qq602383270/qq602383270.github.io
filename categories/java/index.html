@@ -89,7 +89,7 @@
 <meta name="description" content="不要迷失了自己，不要忘了自己的目标">
 <meta property="og:type" content="website">
 <meta property="og:title" content="proyh">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/categories/java/index.html">
 <meta property="og:site_name" content="proyh">
 <meta property="og:description" content="不要迷失了自己，不要忘了自己的目标">
 <meta name="twitter:card" content="summary">
@@ -115,9 +115,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/categories/java/"/>
 
-  <title> proyh </title>
+  <title> 分类: java | proyh </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -148,9 +148,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,286 +255,68 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <section id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        java
+        <small>分类</small>
+      </h2>
+    </div>
+
     
       
 
-  
-  
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
+      <h1 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
+            <a class="post-title-link" href="/2016/08/09/高并发/" itemprop="url">
               
-                
-                <a class="post-title-link" href="/2016/08/09/高并发/" itemprop="url">
-                  高并发static变量的缺陷
-                </a>
+                <span itemprop="name">高并发static变量的缺陷</span>
               
-            
-          </h1>
+            </a>
         
+      </h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-09T11:32:15+08:00" content="2016-08-09">
-              2016-08-09
-            </time>
-          </span>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-08-09T11:32:15+08:00"
+              content="2016-08-09" >
+          08-09
+        </time>
+      </div>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/09/高并发/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/09/高并发/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>static表示“全局”或者“静态”的意思，用来修饰成员变量和成员方法，也可以形成静态static代码块。被static修饰的成员变量和成员方法独立于该类的任何对象。也就是说，它不依赖类特定的实例，被类的所有实例共享。也就是被static修饰的变量在内存中只有一份内存地址。<br>在高并发中被static修饰的变量很容易出现脏读的情况。<br>比如：<br>public static SimpleDateFormat df = new SimpleDateFormat(“yyyy-MM-dd HH:mm:ss”);<br>这样的代码在高并发的情况下会出现以下问题<br>当线程A从客户端访问服务器将数据还没返回到客户端的时候，线程B同时也将数据返回到客户端，如此一来由于static只有一块内存导致线程A的数据就会被线程B的数据所替换导致线程A拿到的数据是脏数据。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    </header>
   </article>
 
 
     
       
 
-  
-  
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
+      <h1 class="post-title">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
+            <a class="post-title-link" href="/2016/08/02/java导入导出/" itemprop="url">
               
-                
-                <a class="post-title-link" href="/2016/08/02/java导入导出/" itemprop="url">
-                  java excel导入导出
-                </a>
+                <span itemprop="name">java excel导入导出</span>
               
-            
-          </h1>
+            </a>
         
+      </h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-02T00:47:54+08:00" content="2016-08-02">
-              2016-08-02
-            </time>
-          </span>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-08-02T00:47:54+08:00"
+              content="2016-08-02" >
+          08-02
+        </time>
+      </div>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/02/java导入导出/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/02/java导入导出/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>导入方法</p>
-<pre><code>    WritableWorkbook book = Workbook.createWorkbook(new File(&quot;F:/test.xls&quot;));
-    // 生成名为“第一页”的工作表，参数0表示这是第一页
-    WritableSheet sheet = book.createSheet(&quot;第一页&quot; , 0 );
-    // 在Label对象的构造子中指名单元格位置是第一列第一行(0,0)
-    // 以及单元格内容为test
-
-    Label label =null;
-    // 写入数据并关闭文件 
-    book.write();
-    book.close();
-    int i=0;
-    sheet.addCell(new Label( 0 , 0 , &quot;用户ID&quot; ));
-        // 将定义好的单元格添加到工作表中
-      label= new Label( 0 , i , userId );
-      sheet.addCell(label);
-         /**/ 
-        /*
-         * 生成一个保存数字的单元格 必须使用Number的完整包路径，否则有语法歧义 单元格位置是第二列，第一行，值为789.123
-        */
-         jxl.write.Number number = new jxl.write.Number( 1 , 0 , 555.12541 );
-            sheet.addCell(number);
-
-}
-</code></pre><p>读取方法</p>
-<pre><code>        try {
-            Workbook rwb=Workbook.getWorkbook(new File(&quot;F:/test.xls&quot;));
-            Sheet rs=rwb.getSheet(0);//或者rwb.getSheet(0)
-            int clos=rs.getColumns();//得到所有的列
-            int rows=rs.getRows();//得到所有的行
-
-            for (int i = 1; i &lt; rows; i++) {
-                for (int j = 0; j &lt; clos; j++) {
-                    //第一个是列数，第二个是行数
-                    String userid=rs.getCell(j++, i).getContents();//默认最左边编号也算一列 所以这里得j++
-                    String balance=rs.getCell(j++, i).getContents();
-                    String availableAmount=rs.getCell(j++, i).getContents();
-                    String freezeAmount=rs.getCell(j++, i).getContents();
-
-                    System.out.println(&quot;用户id:&quot;+userid+&quot;\t账户余额:&quot;+balance+&quot;\t可用余额:&quot;+availableAmount+&quot;\t冻结余额:&quot;+freezeAmount);
-                }
-            }
-}catch(Exception e){}
-</code></pre>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
+    </header>
   </article>
 
 
@@ -544,6 +324,7 @@
   </section>
 
   
+
 
 
           </div>
