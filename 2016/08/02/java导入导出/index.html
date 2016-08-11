@@ -86,28 +86,22 @@
 
 
 
-<meta name="description" content="导入方法
+<meta name="description" content="&amp;#x5BFC;&amp;#x5165;&amp;#x65B9;&amp;#x6CD5;
     WritableWorkbook book = Workbook.createWorkbook(new File(&amp;quot;F:/test.xls&amp;quot;));
-    // 生成名为“第一页”的工作表，参数0表示这是第一页
-    WritableSheet sheet = book.createSheet(&amp;quot;第一页&amp;quot; , 0 );
-    // 在L">
+    // &amp;#x751F;&amp;#x6210;&amp;#x540D;&amp;#x4E3A;&amp;#x201C;&amp;#x7B2C;&amp;#x4E00;&amp;#x9875;&amp;#x201D;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java excel导入导出">
 <meta property="og:url" content="http://yoursite.com/2016/08/02/java导入导出/index.html">
 <meta property="og:site_name" content="proyh">
-<meta property="og:description" content="导入方法
+<meta property="og:description" content="&amp;#x5BFC;&amp;#x5165;&amp;#x65B9;&amp;#x6CD5;
     WritableWorkbook book = Workbook.createWorkbook(new File(&amp;quot;F:/test.xls&amp;quot;));
-    // 生成名为“第一页”的工作表，参数0表示这是第一页
-    WritableSheet sheet = book.createSheet(&amp;quot;第一页&amp;quot; , 0 );
-    // 在L">
+    // &amp;#x751F;&amp;#x6210;&amp;#x540D;&amp;#x4E3A;&amp;#x201C;&amp;#x7B2C;&amp;#x4E00;&amp;#x9875;&amp;#x201D;">
 <meta property="og:updated_time" content="2016-08-09T03:40:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java excel导入导出">
-<meta name="twitter:description" content="导入方法
+<meta name="twitter:description" content="&amp;#x5BFC;&amp;#x5165;&amp;#x65B9;&amp;#x6CD5;
     WritableWorkbook book = Workbook.createWorkbook(new File(&amp;quot;F:/test.xls&amp;quot;));
-    // 生成名为“第一页”的工作表，参数0表示这是第一页
-    WritableSheet sheet = book.createSheet(&amp;quot;第一页&amp;quot; , 0 );
-    // 在L">
+    // &amp;#x751F;&amp;#x6210;&amp;#x540D;&amp;#x4E3A;&amp;#x201C;&amp;#x7B2C;&amp;#x4E00;&amp;#x9875;&amp;#x201D;">
 
 
 
@@ -356,46 +350,46 @@
       
 
       
-        <p>导入方法</p>
+        <p>&#x5BFC;&#x5165;&#x65B9;&#x6CD5;</p>
 <pre><code>    WritableWorkbook book = Workbook.createWorkbook(new File(&quot;F:/test.xls&quot;));
-    // 生成名为“第一页”的工作表，参数0表示这是第一页
-    WritableSheet sheet = book.createSheet(&quot;第一页&quot; , 0 );
-    // 在Label对象的构造子中指名单元格位置是第一列第一行(0,0)
-    // 以及单元格内容为test
+    // &#x751F;&#x6210;&#x540D;&#x4E3A;&#x201C;&#x7B2C;&#x4E00;&#x9875;&#x201D;&#x7684;&#x5DE5;&#x4F5C;&#x8868;&#xFF0C;&#x53C2;&#x6570;0&#x8868;&#x793A;&#x8FD9;&#x662F;&#x7B2C;&#x4E00;&#x9875;
+    WritableSheet sheet = book.createSheet(&quot;&#x7B2C;&#x4E00;&#x9875;&quot; , 0 );
+    // &#x5728;Label&#x5BF9;&#x8C61;&#x7684;&#x6784;&#x9020;&#x5B50;&#x4E2D;&#x6307;&#x540D;&#x5355;&#x5143;&#x683C;&#x4F4D;&#x7F6E;&#x662F;&#x7B2C;&#x4E00;&#x5217;&#x7B2C;&#x4E00;&#x884C;(0,0)
+    // &#x4EE5;&#x53CA;&#x5355;&#x5143;&#x683C;&#x5185;&#x5BB9;&#x4E3A;test
 
     Label label =null;
-    // 写入数据并关闭文件 
+    // &#x5199;&#x5165;&#x6570;&#x636E;&#x5E76;&#x5173;&#x95ED;&#x6587;&#x4EF6; 
     book.write();
     book.close();
     int i=0;
-    sheet.addCell(new Label( 0 , 0 , &quot;用户ID&quot; ));
-        // 将定义好的单元格添加到工作表中
+    sheet.addCell(new Label( 0 , 0 , &quot;&#x7528;&#x6237;ID&quot; ));
+        // &#x5C06;&#x5B9A;&#x4E49;&#x597D;&#x7684;&#x5355;&#x5143;&#x683C;&#x6DFB;&#x52A0;&#x5230;&#x5DE5;&#x4F5C;&#x8868;&#x4E2D;
       label= new Label( 0 , i , userId );
       sheet.addCell(label);
          /**/ 
         /*
-         * 生成一个保存数字的单元格 必须使用Number的完整包路径，否则有语法歧义 单元格位置是第二列，第一行，值为789.123
+         * &#x751F;&#x6210;&#x4E00;&#x4E2A;&#x4FDD;&#x5B58;&#x6570;&#x5B57;&#x7684;&#x5355;&#x5143;&#x683C; &#x5FC5;&#x987B;&#x4F7F;&#x7528;Number&#x7684;&#x5B8C;&#x6574;&#x5305;&#x8DEF;&#x5F84;&#xFF0C;&#x5426;&#x5219;&#x6709;&#x8BED;&#x6CD5;&#x6B67;&#x4E49; &#x5355;&#x5143;&#x683C;&#x4F4D;&#x7F6E;&#x662F;&#x7B2C;&#x4E8C;&#x5217;&#xFF0C;&#x7B2C;&#x4E00;&#x884C;&#xFF0C;&#x503C;&#x4E3A;789.123
         */
          jxl.write.Number number = new jxl.write.Number( 1 , 0 , 555.12541 );
             sheet.addCell(number);
 
 }
-</code></pre><p>读取方法</p>
+</code></pre><p>&#x8BFB;&#x53D6;&#x65B9;&#x6CD5;</p>
 <pre><code>        try {
             Workbook rwb=Workbook.getWorkbook(new File(&quot;F:/test.xls&quot;));
-            Sheet rs=rwb.getSheet(0);//或者rwb.getSheet(0)
-            int clos=rs.getColumns();//得到所有的列
-            int rows=rs.getRows();//得到所有的行
+            Sheet rs=rwb.getSheet(0);//&#x6216;&#x8005;rwb.getSheet(0)
+            int clos=rs.getColumns();//&#x5F97;&#x5230;&#x6240;&#x6709;&#x7684;&#x5217;
+            int rows=rs.getRows();//&#x5F97;&#x5230;&#x6240;&#x6709;&#x7684;&#x884C;
 
             for (int i = 1; i &lt; rows; i++) {
                 for (int j = 0; j &lt; clos; j++) {
-                    //第一个是列数，第二个是行数
-                    String userid=rs.getCell(j++, i).getContents();//默认最左边编号也算一列 所以这里得j++
+                    //&#x7B2C;&#x4E00;&#x4E2A;&#x662F;&#x5217;&#x6570;&#xFF0C;&#x7B2C;&#x4E8C;&#x4E2A;&#x662F;&#x884C;&#x6570;
+                    String userid=rs.getCell(j++, i).getContents();//&#x9ED8;&#x8BA4;&#x6700;&#x5DE6;&#x8FB9;&#x7F16;&#x53F7;&#x4E5F;&#x7B97;&#x4E00;&#x5217; &#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x5F97;j++
                     String balance=rs.getCell(j++, i).getContents();
                     String availableAmount=rs.getCell(j++, i).getContents();
                     String freezeAmount=rs.getCell(j++, i).getContents();
 
-                    System.out.println(&quot;用户id:&quot;+userid+&quot;\t账户余额:&quot;+balance+&quot;\t可用余额:&quot;+availableAmount+&quot;\t冻结余额:&quot;+freezeAmount);
+                    System.out.println(&quot;&#x7528;&#x6237;id:&quot;+userid+&quot;\t&#x8D26;&#x6237;&#x4F59;&#x989D;:&quot;+balance+&quot;\t&#x53EF;&#x7528;&#x4F59;&#x989D;:&quot;+availableAmount+&quot;\t&#x51BB;&#x7ED3;&#x4F59;&#x989D;:&quot;+freezeAmount);
                 }
             }
 }catch(Exception e){}
@@ -434,8 +428,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/09/高并发/" rel="prev" title="高并发static变量的缺陷">
-                高并发static变量的缺陷 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/09/观察者设计模式/" rel="prev" title="观察者设计模式">
+                观察者设计模式 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
