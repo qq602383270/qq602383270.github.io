@@ -1,0 +1,779 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="设计模式 观察者," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="proyh" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;#x5B9A;&amp;#x4E49;&amp;#x89C2;&amp;#x5BDF;&amp;#x8005;&amp;#x6A21;&amp;#x5F0F;&amp;#x5B9A;&amp;#x4E49;&amp;#x4E86;&amp;#x4E00;&amp;#x79CD;&amp;#x4E00;&amp;#x5BF9;&amp;#x591A;&amp;#x7684;&amp;#x4F9D;&amp;#x8D56;&amp;#x5173;&amp;#x7CFB;&amp;#xFF0C;&amp;#x8BA9;&amp;#x591A;&amp;#x4E2A;&amp;#x89C2;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="观察者设计模式">
+<meta property="og:url" content="http://yoursite.com/2016/08/09/TheObserver/index.html">
+<meta property="og:site_name" content="proyh">
+<meta property="og:description" content="&amp;#x5B9A;&amp;#x4E49;&amp;#x89C2;&amp;#x5BDF;&amp;#x8005;&amp;#x6A21;&amp;#x5F0F;&amp;#x5B9A;&amp;#x4E49;&amp;#x4E86;&amp;#x4E00;&amp;#x79CD;&amp;#x4E00;&amp;#x5BF9;&amp;#x591A;&amp;#x7684;&amp;#x4F9D;&amp;#x8D56;&amp;#x5173;&amp;#x7CFB;&amp;#xFF0C;&amp;#x8BA9;&amp;#x591A;&amp;#x4E2A;&amp;#x89C2;">
+<meta property="og:updated_time" content="2016-08-19T09:49:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="观察者设计模式">
+<meta name="twitter:description" content="&amp;#x5B9A;&amp;#x4E49;&amp;#x89C2;&amp;#x5BDF;&amp;#x8005;&amp;#x6A21;&amp;#x5F0F;&amp;#x5B9A;&amp;#x4E49;&amp;#x4E86;&amp;#x4E00;&amp;#x79CD;&amp;#x4E00;&amp;#x5BF9;&amp;#x591A;&amp;#x7684;&amp;#x4F9D;&amp;#x8D56;&amp;#x5173;&amp;#x7CFB;&amp;#xFF0C;&amp;#x8BA9;&amp;#x591A;&amp;#x4E2A;&amp;#x89C2;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/09/TheObserver/"/>
+
+
+  <title> 观察者设计模式 | proyh </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?bd51989d37bd7227a9748484e99db07c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">proyh</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">不要乱了计划</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                观察者设计模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-09T11:46:16+08:00" content="2016-08-09">
+              2016-08-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/09/TheObserver/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/09/TheObserver/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="&#x5B9A;&#x4E49;"><a href="#&#x5B9A;&#x4E49;" class="headerlink" title="&#x5B9A;&#x4E49;"></a>&#x5B9A;&#x4E49;</h4><p>&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x79CD;&#x4E00;&#x5BF9;&#x591A;&#x7684;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#xFF0C;&#x8BA9;&#x591A;&#x4E2A;&#x89C2;&#x5BDF;&#x8005;&#x5BF9;&#x8C61;&#x540C;&#x65F6;&#x76D1;&#x542C;&#x67D0;&#x4E00;&#x4E2A;&#x4E3B;&#x9898;&#x5BF9;&#x8C61;&#x3002;&#x8FD9;&#x4E2A;&#x4E3B;&#x9898;&#x5BF9;&#x8C61;&#x5728;&#x72B6;&#x6001;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#xFF0C;&#x4F1A;&#x901A;&#x77E5;&#x6240;&#x6709;&#x89C2;&#x5BDF;&#x8005;&#x5BF9;&#x8C61;&#xFF0C;&#x4F7F;&#x5B83;&#x4EEC;&#x80FD;&#x591F;&#x81EA;&#x52A8;&#x66F4;&#x65B0;&#x81EA;&#x5DF1;&#x3002;</p>
+<h4 id="&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x89D2;&#x8272;"><a href="#&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x89D2;&#x8272;" class="headerlink" title="&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x89D2;&#x8272;"></a>&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x89D2;&#x8272;</h4><ol>
+<li><p>&#x62BD;&#x8C61;&#x4E3B;&#x9898;&#xFF08;Subject&#xFF09;&#xFF1A;&#x5B83;&#x628A;&#x6240;&#x6709;&#x89C2;&#x5BDF;&#x8005;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;&#x4FDD;&#x5B58;&#x5230;&#x4E00;&#x4E2A;&#x805A;&#x96C6;&#x91CC;&#xFF0C;&#x6BCF;&#x4E2A;&#x4E3B;&#x9898;&#x90FD;&#x53EF;&#x4EE5;&#x6709;&#x4EFB;&#x4F55;&#x6570;&#x91CF;&#x7684;&#x89C2;&#x5BDF;&#x8005;&#x3002;&#x62BD;&#x8C61;&#x4E3B;&#x9898;&#x63D0;&#x4F9B;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x548C;&#x5220;&#x9664;&#x89C2;&#x5BDF;&#x8005;&#x5BF9;&#x8C61;&#x3002;</p>
+</li>
+<li><p>&#x5177;&#x4F53;&#x4E3B;&#x9898;&#xFF08;ConcreteSubject&#xFF09;&#xFF1A;&#x5C06;&#x6709;&#x5173;&#x72B6;&#x6001;&#x5B58;&#x5165;&#x5177;&#x4F53;&#x89C2;&#x5BDF;&#x8005;&#x5BF9;&#x8C61;&#xFF1B;&#x5728;&#x5177;&#x4F53;&#x4E3B;&#x9898;&#x5185;&#x90E8;&#x72B6;&#x6001;&#x6539;&#x53D8;&#x65F6;&#xFF0C;&#x7ED9;&#x6240;&#x6709;&#x767B;&#x8BB0;&#x8FC7;&#x7684;&#x89C2;&#x5BDF;&#x8005;&#x53D1;&#x51FA;&#x901A;&#x77E5;&#x3002;</p>
+</li>
+<li><p>&#x62BD;&#x8C61;&#x89C2;&#x5BDF;&#x8005;&#xFF08;Observer&#xFF09;&#xFF1A;&#x4E3A;&#x6240;&#x6709;&#x7684;&#x5177;&#x4F53;&#x89C2;&#x5BDF;&#x8005;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x5728;&#x5F97;&#x5230;&#x4E3B;&#x9898;&#x901A;&#x77E5;&#x65F6;&#x66F4;&#x65B0;&#x81EA;&#x5DF1;&#x3002;</p>
+</li>
+<li><p>&#x5177;&#x4F53;&#x89C2;&#x5BDF;&#x8005;&#xFF08;ConcreteObserver&#xFF09;&#xFF1A;&#x5B9E;&#x73B0;&#x62BD;&#x8C61;&#x89C2;&#x5BDF;&#x8005;&#x89D2;&#x8272;&#x6240;&#x8981;&#x6C42;&#x7684;&#x66F4;&#x65B0;&#x63A5;&#x53E3;&#xFF0C;&#x4EE5;&#x4FBF;&#x4F7F;&#x672C;&#x8EAB;&#x7684;&#x72B6;&#x6001;&#x4E0E;&#x4E3B;&#x9898;&#x72B6;&#x6001;&#x534F;&#x8C03;&#x3002;</p>
+</li>
+</ol>
+<h3 id="&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#x7684;java&#x4EE3;&#x7801;"><a href="#&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#x7684;java&#x4EE3;&#x7801;" class="headerlink" title="&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#x7684;java&#x4EE3;&#x7801;"></a>&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#x7684;java&#x4EE3;&#x7801;</h3><hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">package observer;</div><div class="line"></div><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.List;</div><div class="line"></div><div class="line">/**</div><div class="line"> * &#xA0;&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#x7684;&#x62BD;&#x8C61;&#x4E3B;&#x9898;</div><div class="line"> */</div><div class="line">public abstract class Subject {</div><div class="line">    private List&lt;Observer&gt; observers = new ArrayList&lt;Observer&gt;();</div><div class="line"></div><div class="line">    public void attach(Observer observer) {</div><div class="line">        observers.add(observer);</div><div class="line">    }</div><div class="line"></div><div class="line">    public void detach(Observer observer) {</div><div class="line">        observers.remove(observer);</div><div class="line">    }</div><div class="line"></div><div class="line">    public void Notify() {</div><div class="line">        for (Observer o : observers) {</div><div class="line">            o.update();</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">package observer;</div><div class="line">/**</div><div class="line"> * &#x62BD;&#x8C61;&#x89C2;&#x5BDF;&#x8005;&#x7C7B;&#xFF0C;&#x4E3A;&#x6240;&#x6709;&#x5177;&#x4F53;&#x89C2;&#x5BDF;&#x8005;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x5728;&#x5F97;&#x5230;&#x901A;&#x77E5;&#x65F6;&#x66F4;&#x65B0;&#x81EA;&#x5DF1;</div><div class="line"> */</div><div class="line">public  abstract class Observer {</div><div class="line">    public abstract void update();</div><div class="line">}</div></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">package observer;</div><div class="line"></div><div class="line">/**</div><div class="line"> * &#x5177;&#x4F53;&#x89C2;&#x5BDF;&#x8005;&#x6216;&#x5177;&#x4F53;&#x901A;&#x77E5;&#x8005;&#xFF0C;&#x5C06;&#x6709;&#x5173;&#x72B6;&#x6001;&#x5B58;&#x5165;&#x5177;&#x4F53;&#x89C2;&#x5BDF;&#x8005;&#x5BF9;&#x8C61;&#xFF1B; &#x5728;&#x5177;&#x4F53;&#x4E3B;&#x9898;&#x7684;&#x5185;&#x90E8;&#x72B6;&#x6001;&#x6539;&#x53D8;&#x65F6;&#xFF0C;&#x7ED9;&#x6240;&#x6709;&#x767B;&#x8BB0;&#x8FC7;&#x7684;&#x89C2;&#x5BDF;&#x8005;&#x53D1;&#x51FA;&#x901A;&#x77E5;&#x3002;&#x5177;&#x4F53;&#x4E3B;&#x9898;&#x89D2;&#x8272;&#x901A;&#x5E38;&#x7528;&#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x5B50;&#x7C7B;&#x5B9E;&#x73B0;&#x3002;</div><div class="line"> */</div><div class="line">public class ConcreteSubject extends Subject {</div><div class="line"></div><div class="line">    private String subjectState;</div><div class="line"></div><div class="line">    public String getSubjectState() {</div><div class="line">        return subjectState;</div><div class="line">    }</div><div class="line"></div><div class="line">    public void setSubjectState(String subjectState) {</div><div class="line">        this.subjectState = subjectState;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">package observer;</div><div class="line"></div><div class="line">/**</div><div class="line"> * &#x5177;&#x4F53;&#x89C2;&#x5BDF;&#x8005;&#xFF0C;&#x5B9E;&#x73B0;&#x62BD;&#x8C61;&#x89C2;&#x5BDF;&#x8005;&#x89D2;&#x8272;&#x6240;&#x8981;&#x6C42;&#x7684;&#x66F4;&#x65B0;&#x63A5;&#x53E3;&#xFF0C;&#x5DF2;&#x662F;&#x672C;&#x8EAB;&#x72B6;&#x6001;&#x4E0E;&#x4E3B;&#x9898;&#x72B6;&#x6001;&#x76F8;&#x534F;&#x8C03;</div><div class="line"> */</div><div class="line">public class ConcreteObserver extends Observer {</div><div class="line">    private String observerState;</div><div class="line">    private String name;</div><div class="line">    private ConcreteSubject subject;</div><div class="line"></div><div class="line">    public ConcreteObserver(ConcreteSubject subject, String name) {</div><div class="line">        this.name = name;</div><div class="line">        this.subject = subject;</div><div class="line">    }</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void update() {</div><div class="line"></div><div class="line">        observerState = subject.getSubjectState();</div><div class="line">        System.out.println(&quot;The observer&apos;s state of &quot; + name + &quot; is &quot; + observerState);</div><div class="line">    }</div><div class="line"></div><div class="line">    public ConcreteSubject getSubject() {</div><div class="line">        return subject;</div><div class="line">    }</div><div class="line"></div><div class="line">    public void setSubject(ConcreteSubject subject) {</div><div class="line">        this.subject = subject;</div><div class="line">    }</div><div class="line"></div><div class="line">}</div></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">package observer;</div><div class="line"></div><div class="line">/**</div><div class="line"> * &#x5177;&#x4F53;&#x89C2;&#x5BDF;&#x8005;&#xFF0C;&#x5B9E;&#x73B0;&#x62BD;&#x8C61;&#x89C2;&#x5BDF;&#x8005;&#x89D2;&#x8272;&#x6240;&#x8981;&#x6C42;&#x7684;&#x66F4;&#x65B0;&#x63A5;&#x53E3;&#xFF0C;&#x5DF2;&#x662F;&#x672C;&#x8EAB;&#x72B6;&#x6001;&#x4E0E;&#x4E3B;&#x9898;&#x72B6;&#x6001;&#x76F8;&#x534F;&#x8C03;   &#x53EF;&#x4EE5;&#x6709;&#x591A;&#x4E2A;</div><div class="line"> */</div><div class="line">public class ConcreteNewPage extends Observer {</div><div class="line">    private String observerState;</div><div class="line">    private String name;</div><div class="line">    private ConcreteSubject subject;</div><div class="line"></div><div class="line">    public ConcreteNewPage(ConcreteSubject subject, String name) {</div><div class="line"></div><div class="line">        this.name = name;</div><div class="line">        this.subject = subject;</div><div class="line"></div><div class="line">    }</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void update() {</div><div class="line"></div><div class="line">        observerState = subject.getSubjectState();</div><div class="line">        System.out.println(this.getClass().getName() + name + &quot; is &quot; + observerState);</div><div class="line">    }</div><div class="line"></div><div class="line">    public ConcreteSubject getSubject() {</div><div class="line">        return subject;</div><div class="line">    }</div><div class="line"></div><div class="line">    public void setSubject(ConcreteSubject subject) {</div><div class="line">        this.subject = subject;</div><div class="line">    }</div><div class="line"></div><div class="line">}</div></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">package observer;</div><div class="line"></div><div class="line">/**</div><div class="line"> * &#x5177;&#x4F53;&#x7684;&#x6D4B;&#x8BD5;</div><div class="line"> */</div><div class="line">public class TestObserver {</div><div class="line">    public static void main(String[] args) {</div><div class="line">        // &#x5177;&#x4F53;&#x4E3B;&#x9898;&#x89D2;&#x8272;&#x901A;&#x5E38;&#x7528;&#x5177;&#x4F53;&#x81EA;&#x6765;&#x6765;&#x5B9E;&#x73B0;</div><div class="line">        ConcreteSubject subject = new ConcreteSubject();</div><div class="line">        </div><div class="line">        subject.setSubjectState(&quot;&#x4ECA;&#x65E5;&#x5934;&#x6761;&quot;);</div><div class="line"></div><div class="line">        subject.attach(new ConcreteObserver(subject, &quot;Observer A&quot;));</div><div class="line">        subject.attach(new ConcreteObserver(subject, &quot;Observer B&quot;));</div><div class="line">        subject.attach(new ConcreteObserver(subject, &quot;Observer C&quot;));</div><div class="line">        subject.attach(new ConcreteNewPage(subject, &quot;newPage is big font&quot;));</div><div class="line"></div><div class="line">        subject.Notify();</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<hr>
+<h5 id="&#x8FD0;&#x884C;&#x6548;&#x679C;"><a href="#&#x8FD0;&#x884C;&#x6548;&#x679C;" class="headerlink" title="&#x8FD0;&#x884C;&#x6548;&#x679C;"></a>&#x8FD0;&#x884C;&#x6548;&#x679C;</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">The observer&apos;s state of Observer A is &#x4ECA;&#x65E5;&#x5934;&#x6761;</div><div class="line">The observer&apos;s state of Observer B is &#x4ECA;&#x65E5;&#x5934;&#x6761;</div><div class="line">The observer&apos;s state of Observer C is &#x4ECA;&#x65E5;&#x5934;&#x6761;</div><div class="line">observer.ConcreteNewPagenewPage is big font is &#x4ECA;&#x65E5;&#x5934;&#x6761;</div></pre></td></tr></table></figure>
+<hr>
+<h4 id="&#x6A21;&#x5F0F;&#x603B;&#x7ED3;"><a href="#&#x6A21;&#x5F0F;&#x603B;&#x7ED3;" class="headerlink" title="&#x6A21;&#x5F0F;&#x603B;&#x7ED3;"></a>&#x6A21;&#x5F0F;&#x603B;&#x7ED3;</h4><h5 id="&#x4F18;&#x70B9;"><a href="#&#x4F18;&#x70B9;" class="headerlink" title="&#x4F18;&#x70B9;"></a>&#x4F18;&#x70B9;</h5><ul>
+<li>&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#x89E3;&#x9664;&#x4E86;&#x4E3B;&#x9898;&#x548C;&#x5177;&#x4F53;&#x89C2;&#x5BDF;&#x8005;&#x7684;&#x8026;&#x5408;&#xFF0C;&#x8BA9;&#x8026;&#x5408;&#x7684;&#x53CC;&#x65B9;&#x90FD;&#x4F9D;&#x8D56;&#x4E8E;&#x62BD;&#x8C61;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x4F9D;&#x8D56;&#x5177;&#x4F53;&#x3002;&#x4ECE;&#x800C;&#x4F7F;&#x5F97;&#x5404;&#x81EA;&#x7684;&#x53D8;&#x5316;&#x90FD;&#x4E0D;&#x4F1A;&#x5F71;&#x54CD;&#x53E6;&#x4E00;&#x8FB9;&#x7684;&#x53D8;&#x5316;&#x3002;</li>
+</ul>
+<h5 id="&#x7F3A;&#x70B9;"><a href="#&#x7F3A;&#x70B9;" class="headerlink" title="&#x7F3A;&#x70B9;"></a>&#x7F3A;&#x70B9;</h5><ul>
+<li>&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#x5E76;&#x672A;&#x5B8C;&#x5168;&#x89E3;&#x9664;&#xFF0C;&#x62BD;&#x8C61;&#x901A;&#x77E5;&#x8005;&#x4F9D;&#x65E7;&#x4F9D;&#x8D56;&#x62BD;&#x8C61;&#x7684;&#x89C2;&#x5BDF;&#x8005;&#x3002;</li>
+</ul>
+<h4 id="&#x9002;&#x7528;&#x573A;&#x666F;"><a href="#&#x9002;&#x7528;&#x573A;&#x666F;" class="headerlink" title="&#x9002;&#x7528;&#x573A;&#x666F;"></a>&#x9002;&#x7528;&#x573A;&#x666F;</h4><ul>
+<li><p>&#x5F53;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x6539;&#x53D8;&#x9700;&#x8981;&#x7ED9;&#x53D8;&#x5176;&#x5B83;&#x5BF9;&#x8C61;&#x65F6;&#xFF0C;&#x800C;&#x4E14;&#x5B83;&#x4E0D;&#x77E5;&#x9053;&#x5177;&#x4F53;&#x6709;&#x591A;&#x5C11;&#x4E2A;&#x5BF9;&#x8C61;&#x6709;&#x5F85;&#x6539;&#x53D8;&#x65F6;&#x3002;</p>
+</li>
+<li><p>&#x4E00;&#x4E2A;&#x62BD;&#x8C61;&#x67D0;&#x578B;&#x6709;&#x4E24;&#x4E2A;&#x65B9;&#x9762;&#xFF0C;&#x5F53;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x65B9;&#x9762;&#x4F9D;&#x8D56;&#x4E8E;&#x53E6;&#x4E00;&#x4E2A;&#x65B9;&#x9762;&#xFF0C;&#x8FD9;&#x65F6;&#x7528;&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#x53EF;&#x4EE5;&#x5C06;&#x8FD9;&#x4E24;&#x8005;&#x5C01;&#x88C5;&#x5728;&#x72EC;&#x7ACB;&#x7684;&#x5BF9;&#x8C61;&#x4E2D;&#x4F7F;&#x5B83;&#x4EEC;&#x5404;&#x81EA;&#x72EC;&#x7ACB;&#x5730;&#x6539;&#x53D8;&#x548C;&#x590D;&#x7528;&#x3002;</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式-观察者/" rel="tag">#设计模式 观察者</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/02/java-excel导入导出/" rel="next" title="java excel导入导出">
+                <i class="fa fa-chevron-left"></i> java excel导入导出
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/11/static/" rel="prev" title="高并发static变量的缺陷">
+                高并发static变量的缺陷 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/09/TheObserver/"
+           data-title="观察者设计模式" data-url="http://yoursite.com/2016/08/09/TheObserver/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="王永贺" />
+          <p class="site-author-name" itemprop="name">王永贺</p>
+          <p class="site-description motion-element" itemprop="description">不要迷失了自己，不要忘了自己的目标</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/your-user-name" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/your-user-name" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/your-user-name" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/your-user-name" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://example.com/" title="Title" target="_blank">Title</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式中的角色"><span class="nav-number">2.</span> <span class="nav-text">模式中的角色</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#观察者模式的java代码"><span class="nav-number"></span> <span class="nav-text">观察者模式的java代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#运行效果"><span class="nav-number">0.1.</span> <span class="nav-text">运行效果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模式总结"><span class="nav-number">1.</span> <span class="nav-text">模式总结</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#优点"><span class="nav-number">1.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缺点"><span class="nav-number">1.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#适用场景"><span class="nav-number">2.</span> <span class="nav-text">适用场景</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YongHe.Wang</span>
+</div>
+<div style="display:none">
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+</div>
+<br>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1260118756'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1260118756%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"proyh"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
