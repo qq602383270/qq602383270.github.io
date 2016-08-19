@@ -62,7 +62,7 @@
     <link href="http://yoursite.com/2016/08/11/%E9%AB%98%E5%B9%B6%E5%8F%91/"/>
     <id>http://yoursite.com/2016/08/11/高并发/</id>
     <published>2016-08-11T09:20:40.000Z</published>
-    <updated>2016-08-11T09:54:20.000Z</updated>
+    <updated>2016-08-19T09:47:06.000Z</updated>
     
     <content type="html"><![CDATA[<p>static&#x8868;&#x793A;&#x201C;&#x5168;&#x5C40;&#x201D;&#x6216;&#x8005;&#x201C;&#x9759;&#x6001;&#x201D;&#x7684;&#x610F;&#x601D;&#xFF0C;&#x7528;&#x6765;&#x4FEE;&#x9970;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x548C;&#x6210;&#x5458;&#x65B9;&#x6CD5;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5F62;&#x6210;&#x9759;&#x6001;static&#x4EE3;&#x7801;&#x5757;&#x3002;&#x88AB;static&#x4FEE;&#x9970;&#x7684;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x548C;&#x6210;&#x5458;&#x65B9;&#x6CD5;&#x72EC;&#x7ACB;&#x4E8E;&#x8BE5;&#x7C7B;&#x7684;&#x4EFB;&#x4F55;&#x5BF9;&#x8C61;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5B83;&#x4E0D;&#x4F9D;&#x8D56;&#x7C7B;&#x7279;&#x5B9A;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x88AB;&#x7C7B;&#x7684;&#x6240;&#x6709;&#x5B9E;&#x4F8B;&#x5171;&#x4EAB;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x88AB;static&#x4FEE;&#x9970;&#x7684;&#x53D8;&#x91CF;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#x53EA;&#x6709;&#x4E00;&#x4EFD;&#x5185;&#x5B58;&#x5730;&#x5740;&#x3002;<br>&#x5728;&#x9AD8;&#x5E76;&#x53D1;&#x4E2D;&#x88AB;static&#x4FEE;&#x9970;&#x7684;&#x53D8;&#x91CF;&#x5F88;&#x5BB9;&#x6613;&#x51FA;&#x73B0;&#x810F;&#x8BFB;&#x7684;&#x60C5;&#x51B5;&#x3002;<br>&#x6BD4;&#x5982;&#xFF1A;</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public&#xA0;static&#xA0;SimpleDateFormat&#xA0;df&#xA0;=&#xA0;new&#xA0;SimpleDateFormat(&quot;yyyy-MM-dd&#xA0;HH:mm:ss&quot;);</div></pre></td></tr></table></figure>
@@ -88,7 +88,7 @@
     <link href="http://yoursite.com/2016/08/09/%E8%A7%82%E5%AF%9F%E8%80%85%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     <id>http://yoursite.com/2016/08/09/观察者设计模式/</id>
     <published>2016-08-09T03:46:16.000Z</published>
-    <updated>2016-08-11T08:39:17.000Z</updated>
+    <updated>2016-08-19T09:46:09.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="&#x5B9A;&#x4E49;"><a href="#&#x5B9A;&#x4E49;" class="headerlink" title="&#x5B9A;&#x4E49;"></a>&#x5B9A;&#x4E49;</h4><p>&#x89C2;&#x5BDF;&#x8005;&#x6A21;&#x5F0F;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x79CD;&#x4E00;&#x5BF9;&#x591A;&#x7684;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#xFF0C;&#x8BA9;&#x591A;&#x4E2A;&#x89C2;&#x5BDF;&#x8005;&#x5BF9;&#x8C61;&#x540C;&#x65F6;&#x76D1;&#x542C;&#x67D0;&#x4E00;&#x4E2A;&#x4E3B;&#x9898;&#x5BF9;&#x8C61;&#x3002;&#x8FD9;&#x4E2A;&#x4E3B;&#x9898;&#x5BF9;&#x8C61;&#x5728;&#x72B6;&#x6001;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#xFF0C;&#x4F1A;&#x901A;&#x77E5;&#x6240;&#x6709;&#x89C2;&#x5BDF;&#x8005;&#x5BF9;&#x8C61;&#xFF0C;&#x4F7F;&#x5B83;&#x4EEC;&#x80FD;&#x591F;&#x81EA;&#x52A8;&#x66F4;&#x65B0;&#x81EA;&#x5DF1;&#x3002;</p>
 <h4 id="&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x89D2;&#x8272;"><a href="#&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x89D2;&#x8272;" class="headerlink" title="&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x89D2;&#x8272;"></a>&#x6A21;&#x5F0F;&#x4E2D;&#x7684;&#x89D2;&#x8272;</h4><ol>
